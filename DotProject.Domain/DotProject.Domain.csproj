@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\User\" />
+    <Folder Include="Commands\Validations\" />
+    <Folder Include="Events\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotProject.Domain.Core\DotProject.Domain.Core.csproj" />
+    <ProjectReference Include="..\DotProject.Infra.CrossCutting.Bus\DotProject.Infra.CrossCutting.Bus.csproj" />
+  </ItemGroup>
+
+</Project>

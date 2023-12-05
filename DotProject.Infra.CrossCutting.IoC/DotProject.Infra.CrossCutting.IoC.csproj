@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotProject.Domain\DotProject.Domain.csproj" />
+    <ProjectReference Include="..\DotProject.Infra.CrossCutting.Identity\DotProject.Infra.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\DotProject.Infra.Data\DotProject.Infra.Data.csproj" />
+    <ProjectReference Include="..\DotProject\DotProject.Application.csproj" />
+  </ItemGroup>
+
+</Project>
