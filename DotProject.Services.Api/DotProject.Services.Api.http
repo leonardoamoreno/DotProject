@@ -1,6 +1,6 @@
 @DotProject.Services.Api_HostAddress = http://localhost:5130
 
-GET {{DotProject.Services.Api_HostAddress}}/weatherforecast/
+GET {{DotProject.Services.Api_HostAddress}}/swagger/
 Accept: application/json
 
 ###

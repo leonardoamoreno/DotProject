@@ -1,6 +1,6 @@
 ﻿using DotProject.Infra.CrossCutting.IoC;
 
-namespace Equinox.Services.Api.Configurations
+namespace DotProject.Services.Api.Configurations
 {
     public static class DependencyInjectionConfig
     {

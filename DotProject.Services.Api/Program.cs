@@ -1,4 +1,6 @@
-using Equinox.Services.Api.Configurations;
+using DotProject.Infra.Data.Context;
+using DotProject.Services.Api.Configurations;
+using Microsoft.EntityFrameworkCore;
 using NetDevPack.Identity.User;
 using System.Reflection;
 
@@ -27,9 +29,20 @@ builder.Services.AddDependencyInjectionConfiguration();
 
 var app = builder.Build();
 
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var dotProjectContext = scope.ServiceProvider.GetRequiredService<DotProjectContext>();        
+        dotProjectContext.Database.Migrate();
+
+        var eventStoreSqlContext = scope.ServiceProvider.GetRequiredService<EventStoreSqlContext>();        
+        eventStoreSqlContext.Database.Migrate();
+    }
 }
 
 // Configure the HTTP request pipeline.

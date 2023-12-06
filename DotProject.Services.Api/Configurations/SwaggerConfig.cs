@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 
-namespace Equinox.Services.Api.Configurations
+namespace DotProject.Services.Api.Configurations
 {
     public static class SwaggerConfig
     {

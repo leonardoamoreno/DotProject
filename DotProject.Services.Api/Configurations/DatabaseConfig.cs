@@ -1,7 +1,7 @@
 ﻿using DotProject.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Equinox.Services.Api.Configurations
+namespace DotProject.Services.Api.Configurations
 {
     public static class DatabaseConfig
     {
@@ -10,11 +10,10 @@ namespace Equinox.Services.Api.Configurations
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             services.AddDbContext<DotProjectContext>(options =>
-                options.UseInMemoryDatabase("MemoryDatabase"));
-                //UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddDbContext<EventStoreSqlContext>(options =>
-                options.UseInMemoryDatabase("MemoryDatabase"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }

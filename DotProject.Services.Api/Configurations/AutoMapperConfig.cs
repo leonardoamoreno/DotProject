@@ -1,6 +1,6 @@
 ﻿using DotProject.AutoMapper;
 
-namespace Equinox.Services.Api.Configurations
+namespace DotProject.Services.Api.Configurations
 {
     public static class AutoMapperConfig
     {
