@@ -11,55 +11,55 @@ namespace DotProject.Services.Api.Controllers
     {
         private readonly ITaskAppService _taskAppService;
 
-        public TaskController(ITaskAppService projectAppService)
+        public TaskController(ITaskAppService taskAppService)
         {
-            _taskAppService = projectAppService;
+            _taskAppService = taskAppService;
         }
 
         [AllowAnonymous]
-        [HttpGet("project-management")]
+        [HttpGet("task-management")]
         public async Task<IEnumerable<TaskViewModel>> Get()
         {
             return await _taskAppService.GetAll();
         }
 
         [AllowAnonymous]
-        [HttpGet("project-management/{id:guid}")]
+        [HttpGet("task-management/{id:guid}")]
         public async Task<TaskViewModel> Get(Guid id)
         {
             return await _taskAppService.GetById(id);
         }
 
         [AllowAnonymous]
-        [HttpGet("project-management/user/{projectId:guid}")]
-        public async Task<IEnumerable<TaskViewModel>> GetByProjectId(Guid projectId)
+        [HttpGet("task-management/user/{taskId:guid}")]
+        public async Task<IEnumerable<TaskViewModel>> GetByProjectId(Guid taskId)
         {
-            return await _taskAppService.GetByProjectId(projectId);
+            return await _taskAppService.GetByProjectId(taskId);
         }
 
         [AllowAnonymous]
-        [HttpPost("project-management")]
+        [HttpPost("task-management")]
         public async Task<IActionResult> Post([FromBody] TaskViewModel customerViewModel)
         {
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _taskAppService.Register(customerViewModel));
         }
 
         [AllowAnonymous]
-        [HttpPut("project-management")]
+        [HttpPut("task-management")]
         public async Task<IActionResult> Put([FromBody] TaskViewModel customerViewModel)
         {
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _taskAppService.Update(customerViewModel));
         }
 
         [AllowAnonymous]
-        [HttpDelete("project-management")]
+        [HttpDelete("task-management")]
         public async Task<IActionResult> Delete(Guid id)
         {
             return CustomResponse(await _taskAppService.Remove(id));
         }
 
         [AllowAnonymous]
-        [HttpGet("project-management/history/{id:guid}")]
+        [HttpGet("task-management/history/{id:guid}")]
         public async Task<IList<TaskHistoryData>> History(Guid id)
         {
             return await _taskAppService.GetAllHistory(id);

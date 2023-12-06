@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DotProject.Domain.Commands.Project;
+using DotProject.Domain.Commands.Task;
 using DotProject.Domain.Interfaces;
 using DotProject.EventSourceNormalizers.Task;
 using DotProject.Infra.Data.Repository.EventSourcing;
@@ -45,21 +45,21 @@ namespace DotProject.Services
             return _mapper.Map<IEnumerable<TaskViewModel>>(await _taskRepository.GetByProjectId(projectId));
         }
 
-        public async Task<ValidationResult> Register(TaskViewModel TaskViewModel)
+        public async Task<ValidationResult> Register(TaskViewModel taskViewModel)
         {
-            var registerCommand = _mapper.Map<RegisterNewProjectCommand>(TaskViewModel);
+            var registerCommand = _mapper.Map<RegisterNewTaskCommand>(taskViewModel);
             return await _mediator.SendCommand(registerCommand);
         }
 
         public async Task<ValidationResult> Remove(Guid id)
         {
-            var removeCommand = new RemoveProjectCommand(id);
+            var removeCommand = new RemoveTaskCommand(id);
             return await _mediator.SendCommand(removeCommand);
         }
 
-        public async Task<ValidationResult> Update(TaskViewModel TaskViewModel)
+        public async Task<ValidationResult> Update(TaskViewModel taskViewModel)
         {
-            var updateCommand = _mapper.Map<UpdateProjectCommand>(TaskViewModel);
+            var updateCommand = _mapper.Map<UpdateTaskCommand>(taskViewModel);
             return await _mediator.SendCommand(updateCommand);
         }
 

@@ -27,6 +27,7 @@ namespace DotProject.Infra.CrossCutting.IoC
 
             // Application
             services.AddScoped<IProjectAppService, ProjectAppService>();
+            services.AddScoped<ITaskAppService, TaskAppService>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<ProjectRegisteredEvent>, ProjectEventHandler>();
