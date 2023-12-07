@@ -6,6 +6,12 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", true, true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -38,7 +44,7 @@ if (app.Environment.IsDevelopment())
     using (var scope = app.Services.CreateScope())
     {
         var dotProjectContext = scope.ServiceProvider.GetRequiredService<DotProjectContext>();        
-        dotProjectContext.Database.Migrate();
+        dotProjectContext.Database.EnsureCreated();
 
         var eventStoreSqlContext = scope.ServiceProvider.GetRequiredService<EventStoreSqlContext>();        
         eventStoreSqlContext.Database.Migrate();

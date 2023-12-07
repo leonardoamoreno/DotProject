@@ -30,6 +30,13 @@ namespace DotProject.Infra.Data.Context
             modelBuilder.Ignore<ValidationResult>();
             modelBuilder.Ignore<Event>();
 
+            modelBuilder.Entity<User>().HasData(
+                new User (
+                    new Guid("274cde09-187c-4f4f-8a4d-40427eb32d72"), 
+                    "Usuário 1",
+                    "usuario1@gmail.com"
+                ));
+
             //foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
             //    e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
             //    property.SetColumnType("varchar(100)");
