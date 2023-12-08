@@ -1,3 +1,4 @@
+using DotProject.Application.ViewModels;
 using DotProject.EventSourceNormalizers.Project;
 using DotProject.Interfaces;
 using DotProject.ViewModels;
@@ -21,6 +22,12 @@ namespace DotProject.Services.Api.Controllers
         public async Task<IEnumerable<ProjectViewModel>> Get()
         {
             return await _projectAppService.GetAll();
+        }
+        [AllowAnonymous]
+        [HttpGet("project-management/report")]
+        public async Task<IEnumerable<ReportViewModel>> GetReport()
+        {
+            return await _projectAppService.GetReport();
         }
 
         [AllowAnonymous]

@@ -1,4 +1,5 @@
-﻿using DotProject.EventSourceNormalizers.Project;
+﻿using DotProject.Application.ViewModels;
+using DotProject.EventSourceNormalizers.Project;
 using DotProject.ViewModels;
 using FluentValidation.Results;
 
@@ -9,7 +10,7 @@ namespace DotProject.Interfaces
         Task<IEnumerable<ProjectViewModel>> GetAll();
         Task<ProjectViewModel> GetById(Guid id);
         Task<IEnumerable<ProjectViewModel>> GetByUserId(Guid userId);
-
+        Task<IEnumerable<ReportViewModel>> GetReport();
         Task<ValidationResult> Register(ProjectViewModel projectViewModel);
         Task<ValidationResult> Update(ProjectViewModel projectViewModel);
         Task<ValidationResult> Remove(Guid id);

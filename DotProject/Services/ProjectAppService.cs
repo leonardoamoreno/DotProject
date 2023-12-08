@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DotProject.Application.ViewModels;
 using DotProject.Domain.Commands.Project;
 using DotProject.Domain.Interfaces;
 using DotProject.EventSourceNormalizers.Project;
@@ -66,11 +67,14 @@ namespace DotProject.Services
             return ProjectHistory.ToJavaScriptCustomerHistory(await _eventStoreRepository.All(id));
         }
 
+        public async Task<IEnumerable<ReportViewModel>> GetReport()
+        {
+            return _mapper.Map<IEnumerable<ReportViewModel>>(await _projectRepository.GetReport());
+        }
+
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
-
-       
     }
 }
