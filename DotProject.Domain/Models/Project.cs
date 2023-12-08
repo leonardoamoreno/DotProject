@@ -15,7 +15,7 @@ namespace DotProject.Domain.Models
         public string Name { get; set; }
         public Guid UserId { get; set; } = Guid.Empty;
         public User User { get; set; }
-        public ICollection<Task> Tasks { get; } = new List<Task>();
+        public ICollection<Task> Tasks { get; set; }
 
     }
 }

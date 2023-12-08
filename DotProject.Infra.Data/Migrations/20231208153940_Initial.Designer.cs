@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotProject.Infra.Data.Migrations
 {
     [DbContext(typeof(DotProjectContext))]
-    [Migration("20231206173551_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231208153940_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,9 @@ namespace DotProject.Infra.Data.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
@@ -92,6 +95,14 @@ namespace DotProject.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("274cde09-187c-4f4f-8a4d-40427eb32d72"),
+                            Email = "usuario1@gmail.com",
+                            Name = "Usuário 1"
+                        });
                 });
 
             modelBuilder.Entity("DotProject.Domain.Models.Project", b =>

@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotProject.Services.Api", "DotProject.Services.Api\DotProject.Services.Api.csproj", "{DF00C0FA-BF26-4629-9E7B-287123CF413E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Test", "6 - Test", "{89A8DF0C-5F32-4AAE-A915-4C4BB535921F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotProject.Test", "DotProject.Test\DotProject.Test.csproj", "{C56EF328-F7F3-418A-B620-5E8EB1C73520}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,10 @@ Global
 		{DF00C0FA-BF26-4629-9E7B-287123CF413E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF00C0FA-BF26-4629-9E7B-287123CF413E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF00C0FA-BF26-4629-9E7B-287123CF413E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56EF328-F7F3-418A-B620-5E8EB1C73520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56EF328-F7F3-418A-B620-5E8EB1C73520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56EF328-F7F3-418A-B620-5E8EB1C73520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56EF328-F7F3-418A-B620-5E8EB1C73520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +92,7 @@ Global
 		{751CACC2-15AA-4864-A508-D5D21BAECF89} = {FA8572EC-4D56-4043-A03C-6F13B46BA88A}
 		{629420E4-87BE-44E5-B709-898DE7668D82} = {2FC9117B-E255-4BDE-A995-FB136D444BCD}
 		{DF00C0FA-BF26-4629-9E7B-287123CF413E} = {C8DAB532-1FB2-4018-8FB9-FECF32193B5B}
+		{C56EF328-F7F3-418A-B620-5E8EB1C73520} = {89A8DF0C-5F32-4AAE-A915-4C4BB535921F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3C4271A-FEFA-45EC-90EE-7045D75FDA6A}

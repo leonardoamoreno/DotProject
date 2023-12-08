@@ -7,6 +7,8 @@ namespace DotProject.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Domain.Models.Task> builder)
         {
+            builder.HasOne(e => e.Project).WithMany(e => e.Tasks).HasForeignKey(e => e.ProjectId);
+
             builder.Property(c => c.Id)
                 .HasColumnName("Id");
 
@@ -20,7 +22,7 @@ namespace DotProject.Infra.Data.Mappings
 
             builder.Property(c => c.ExpirationDate);
 
-            builder.Property(c => c.Status);
+            builder.Property(c => c.Priority);
         }
     }
 }

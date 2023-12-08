@@ -20,7 +20,7 @@ namespace DotProject.Infra.Data.Repository
 
         public async Task<Project> GetById(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet.Include(x=> x.Tasks).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<IEnumerable<Project>> GetAll()

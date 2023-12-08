@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DotProject.Domain.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace DotProject.ViewModels
 {
@@ -9,6 +10,7 @@ namespace DotProject.ViewModels
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public Priority Priority { get; set; }
         public int Status { get; set; }
         public Guid ProjectId { get; set; }
         //public Guid ProjectId { get; set; } = Guid.Empty;

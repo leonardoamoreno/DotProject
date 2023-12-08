@@ -21,5 +21,13 @@ namespace DotProject.Domain.Commands.Task.Validations
             RuleFor(c => c.Id)
                 .NotEqual(Guid.Empty);
         }
+
+        protected void ValidatePriority() 
+        {
+            RuleFor(c => c.Priority)
+                .NotNull()
+                .WithMessage("O campo Prioridade é Obrigatória");
+        }
+        
     }
 }

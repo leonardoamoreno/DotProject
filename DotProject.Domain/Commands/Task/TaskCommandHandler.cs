@@ -12,19 +12,35 @@ namespace DotProject.Domain.Commands.Task
         IRequestHandler<RemoveTaskCommand, ValidationResult>
     {
         private readonly ITaskRepository _TaskRepository;
+        private readonly IProjectRepository _ProjectRepository;
 
-        public TaskCommandHandler(ITaskRepository TaskRepository)
+
+        public TaskCommandHandler(ITaskRepository TaskRepository, IProjectRepository projectRepository)
         {
             _TaskRepository = TaskRepository;
+            _ProjectRepository = projectRepository;
         }
 
         public async Task<ValidationResult> Handle(RegisterNewTaskCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var Task = new Models.Task(Guid.NewGuid(), message.Title, message.Description, message.ExpirationDate, message.Status, message.ProjectId);
+            var project = await _ProjectRepository.GetById(message.ProjectId);
 
-            Task.AddDomainEvent(new TaskRegisteredEvent(Task.Id, Task.Title, Task.Description, Task.ExpirationDate, Task.Status, Task.ProjectId));
+            if (project is null)
+            {
+                AddError("O Projeto não existe.");
+                return ValidationResult;
+            }
+            if (project.Tasks.Count >= 20)
+            {
+                AddError("Número máximo de 20 tarefas por projeto foi atingido.");
+                return ValidationResult;
+
+            }
+            var Task = new Models.Task(Guid.NewGuid(), message.Title, message.Description, message.ExpirationDate, message.Priority, message.Status, message.ProjectId);
+
+            Task.AddDomainEvent(new TaskRegisteredEvent(Task.Id, Task.Title, Task.Description, Task.ExpirationDate, Task.Priority, Task.Status, Task.ProjectId));
 
             _TaskRepository.Add(Task);
 
@@ -35,9 +51,9 @@ namespace DotProject.Domain.Commands.Task
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var Task = new Models.Task(message.Id, message.Title, message.Description, message.ExpirationDate, message.Status, message.ProjectId);
+            var Task = new Models.Task(message.Id, message.Title, message.Description, message.ExpirationDate, message.Priority, message.Status, message.ProjectId);
 
-            Task.AddDomainEvent(new TaskUpdatedEvent(Task.Id, Task.Title, Task.Description, Task.ExpirationDate, Task.Status, Task.ProjectId));
+            Task.AddDomainEvent(new TaskUpdatedEvent(Task.Id, Task.Title, Task.Description, Task.ExpirationDate, Task.Priority, Task.Status, Task.ProjectId));
 
             _TaskRepository.Update(Task);
 
@@ -48,17 +64,17 @@ namespace DotProject.Domain.Commands.Task
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var customer = await _TaskRepository.GetById(message.Id);
+            var task = await _TaskRepository.GetById(message.Id);
 
-            if (customer is null)
+            if (task is null)
             {
                 AddError("A Tarefa não existe.");
                 return ValidationResult;
             }
 
-            customer.AddDomainEvent(new TaskRemovedEvent(message.Id));
+            task.AddDomainEvent(new TaskRemovedEvent(message.Id));
 
-            _TaskRepository.Remove(customer);
+            _TaskRepository.Remove(task);
 
             return await Commit(_TaskRepository.UnitOfWork);
         }

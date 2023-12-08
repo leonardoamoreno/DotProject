@@ -15,7 +15,7 @@ namespace DotProject.AutoMapper
                 .ConstructUsing(c => new UpdateProjectCommand(c.Id, c.Name));
 
             CreateMap<TaskViewModel, RegisterNewTaskCommand>()
-                .ConstructUsing(c => new RegisterNewTaskCommand(c.Title, c.Description, c.ExpirationDate, c.Status, c.ProjectId));
+                .ConstructUsing(c => new RegisterNewTaskCommand(c.Title, c.Description, c.ExpirationDate, c.Priority,c.Status, c.ProjectId));
             CreateMap<TaskViewModel, UpdateTaskCommand>()
                 .ConstructUsing(c => new UpdateTaskCommand(c.Title, c.Description, c.ExpirationDate, c.Status, c.ProjectId));
         }

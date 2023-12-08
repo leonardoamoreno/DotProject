@@ -21,4 +21,7 @@ RUN dotnet publish "./DotProject.Services.Api.csproj" -c $BUILD_CONFIGURATION -o
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY ["dockerdemo.pfx", "/https/dockerdemo.pfx"]
+COPY ["cacert.crt", "/usr/local/share/ca-certificates/cacert.crt"]
+RUN update-ca-certificates
 ENTRYPOINT ["dotnet", "DotProject.Services.Api.dll"]

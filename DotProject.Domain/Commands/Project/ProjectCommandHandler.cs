@@ -48,17 +48,23 @@ namespace DotProject.Domain.Commands.Project
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var customer = await _projectRepository.GetById(message.Id);
+            var project = await _projectRepository.GetById(message.Id);
 
-            if (customer is null)
+            if (project is null)
             {
                 AddError("O Projeto não existe.");
                 return ValidationResult;
             }
 
-            customer.AddDomainEvent(new ProjectRemovedEvent(message.Id));
+            if (project.Tasks.Any(x=> x.Status.Equals(0))) 
+            {
+                AddError("Não é possível remover esse projeto, existem tarefas pendentes.");
+                return ValidationResult;
+            }
 
-            _projectRepository.Remove(customer);
+            project.AddDomainEvent(new ProjectRemovedEvent(message.Id));
+
+            _projectRepository.Remove(project);
 
             return await Commit(_projectRepository.UnitOfWork);
         }
