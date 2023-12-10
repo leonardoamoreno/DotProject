@@ -20,7 +20,7 @@ namespace DotProject.Domain.Models
         public string Description { get; set; }
         public DateTime ExpirationDate { get; set; }
         public Priority Priority { get; set; }
-        public int Status { get; set; } // 0:Pendente, 1:Concluído
+        public int Status { get; set; } 
         public Guid ProjectId { get; set; } = Guid.Empty;
         public Project Project { get; set; } = null!;
     }
